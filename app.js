@@ -1,24 +1,19 @@
-// const http = require('http');
 const express = require('express');
 
 const app = express();
 
-//runs every incoming request
-app.use((req, res, next) => {
-  console.log('middleware 1 runs');
+app.use('/', (req, res, next) => {
+  console.log('always runs');
   next();
-});
-app.use((req, res, next) => {
-  console.log('middleware 2 runs');
-  next();
-});
-app.use((req, res, next) => {
-  console.log('middleware 3 runs');
-  next();
-  res.send('hello');
 });
 
-// const server = http.createServer(app);
-// server.listen(3000);
+app.use('/product', (req, res, next) => {
+  res.send('product');
+});
+
+app.use('/', (req, res, next) => {
+  console.log('hello');
+  res.send('root');
+});
 
 app.listen(3000);
