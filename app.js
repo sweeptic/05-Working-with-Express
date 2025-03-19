@@ -15,6 +15,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   console.log('middleware 3 runs');
   next();
+  res.send('hello');
 });
 
 const server = http.createServer(app);
